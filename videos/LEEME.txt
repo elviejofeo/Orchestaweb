@@ -1,0 +1,3 @@
+Guarda aqui tus videos .mp4 (ej: aura.mp4, torre-control.mp4).
+Luego en index.html busca data-video="" y pon la ruta: data-video="videos/aura.mp4"
+y quita la clase 'soon' del div .wthumb + borra el <span class="soon-lbl">.

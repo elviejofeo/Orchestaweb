@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orquesta Supply | Consultoría de operaciones, automatización y software que nacen en el piso de planta</title>
+<meta name="description" content="Consultoría de procesos y S&OP, automatización con IA y desarrollo a la medida. 20 años dirigiendo operaciones industriales, ahora digitalizando empresas y negocios en Monterrey y Nuevo León.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0c0d1a;--base-2:#101228;--surface:#161a35;--surface-2:#1d2245;
+    --line:#2c3160;--line-soft:#20244a;--text:#eef0fa;--text-dim:#9aa0c8;--text-mute:#666c96;
+    --violet:#8b7dff;--violet-deep:#6a5be0;--coral:#ff8a6b;--mint:#5fe0b0;--maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{background:var(--base);color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);display:inline-block}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+
+  header{position:sticky;top:0;z-index:60;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(12,13,26,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);box-shadow:0 10px 40px -30px #000}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,var(--violet-deep),#3a2f9e);display:grid;place-items:center;flex:none}
+  .brand-mark svg{width:22px;height:22px}
+  .brand-txt strong{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;display:block;line-height:1}
+  .brand-txt span{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:14.5px;color:var(--text-dim);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--violet);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;padding:11px 18px;border-radius:8px;cursor:pointer;border:none;transition:transform .15s,background .2s,box-shadow .2s,border-color .2s,color .2s}
+  .btn svg{width:17px;height:17px}
+  .btn-p{background:var(--violet);color:#0c0916}
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(139,125,255,.6)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+  .btn-lg{padding:14px 24px;font-size:15.5px}
+  .nav-cta{display:flex;align-items:center;gap:16px}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+  .menu-btn svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{position:relative;padding:96px 0 74px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(720px 460px at 80% 14%,rgba(139,125,255,.14),transparent 60%),radial-gradient(560px 400px at 5% 92%,rgba(95,224,176,.05),transparent 60%),linear-gradient(180deg,var(--base-2),var(--base))}
+  .dots{position:absolute;inset:0;z-index:-1;opacity:.5;background-image:radial-gradient(var(--line-soft) 1.2px,transparent 1.2px);background-size:26px 26px;-webkit-mask-image:radial-gradient(circle at 72% 28%,#000,transparent 70%);mask-image:radial-gradient(circle at 72% 28%,#000,transparent 70%)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:100px;border:1px solid var(--line);background:rgba(22,26,53,.6);margin-bottom:22px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-dim)}
+  .hero-badge .live{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,224,176,.5)}70%{box-shadow:0 0 0 9px rgba(95,224,176,0)}100%{box-shadow:0 0 0 0 rgba(95,224,176,0)}}
+  .hero h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(38px,5.4vw,62px);line-height:1.03;letter-spacing:-.02em;margin:0 0 20px}
+  .hero h1 .hl{color:var(--violet)}
+  .hero p.lede{font-size:18px;color:var(--text-dim);max-width:35em;margin-bottom:30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-foot{margin-top:26px;display:flex;gap:22px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--text-mute)}
+  .hero-foot b{color:var(--violet);font-weight:400}
+
+  .orq{position:relative;background:linear-gradient(160deg,var(--surface),var(--base-2));border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 40px 90px -50px rgba(0,0,0,.95)}
+  .orq-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .orq-top .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
+  .orq-top .sync{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13.5px;color:var(--mint);display:flex;align-items:center;gap:7px}
+  .orq-top .sync .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);animation:pulse 2.2s ease-out infinite}
+  .eq{display:flex;align-items:flex-end;gap:6px;height:130px;margin-bottom:8px}
+  .eq .bar{flex:1;background:linear-gradient(180deg,var(--violet),var(--violet-deep));border-radius:4px 4px 2px 2px;animation:eq 1.8s ease-in-out infinite;transform-origin:bottom;opacity:.9}
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  .orq-lanes{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px}
+  .lane{display:flex;justify-content:space-between;padding:7px 0;font-family:"JetBrains Mono",monospace;font-size:11.5px}
+  .lane .n{color:var(--text-dim)}.lane .v{color:var(--mint)}
+
+  section.block{padding:86px 0}
+  .sec-head{margin-bottom:44px;max-width:42em}
+  .sec-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(28px,3.8vw,42px);line-height:1.06;letter-spacing:-.015em;margin:12px 0 14px}
+  .sec-head p{color:var(--text-dim);font-size:16.5px}
+
+  .edge{background:linear-gradient(120deg,#14163a,#0f1128);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .edge-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;padding:64px 0}
+  .edge h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-.015em;margin-bottom:18px}
+  .edge h2 .hl{color:var(--violet)}
+  .edge p{color:var(--text-dim);font-size:16px;margin-bottom:14px}
+  .edge-stats{display:flex;flex-direction:column;gap:14px}
+  .estat{display:flex;gap:16px;align-items:baseline;padding:18px 22px;background:var(--surface);border:1px solid var(--line-soft);border-radius:12px}
+  .estat .num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:34px;color:var(--violet);line-height:1;flex:none}
+  .estat .t{font-size:14px;color:var(--text-dim)}
+
+  /* audience banner */
+  .aud-band{display:flex;align-items:center;gap:14px;margin-bottom:32px;padding:14px 20px;background:var(--surface);border:1px solid var(--line);border-radius:100px;width:fit-content}
+  .aud-band .pill{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:100px}
+  .aud-band .pill.on{background:var(--violet);color:#0c0916}
+  .aud-band .pill.off{color:var(--text-mute)}
+
+  .svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .svc{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:30px;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .svc:hover{border-color:var(--violet-deep);transform:translateY(-5px)}
+  .svc.feat{border-color:var(--violet-deep);background:linear-gradient(160deg,#1b1f42,var(--surface));position:relative}
+  .svc.feat::before{content:"Servicio principal";position:absolute;top:-11px;left:26px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--violet);color:#0c0916;padding:4px 12px;border-radius:100px}
+  .svc .ico{width:50px;height:50px;border-radius:13px;background:rgba(139,125,255,.12);border:1px solid rgba(139,125,255,.28);display:grid;place-items:center;margin-bottom:20px}
+  .svc .ico svg{width:25px;height:25px;stroke:var(--violet);fill:none;stroke-width:1.7}
+  .svc h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:20px;margin-bottom:10px}
+  .svc p{font-size:14.5px;color:var(--text-dim);margin-bottom:18px}
+  .svc ul{list-style:none;margin-top:auto;display:flex;flex-direction:column;gap:9px}
+  .svc ul li{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--text-mute);display:flex;gap:9px;align-items:center}
+  .svc ul li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--violet);flex:none}
+
+  .method{background:#0f1128;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .msteps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .mstep .num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--violet);border-top:2px solid var(--violet);padding-top:14px;display:inline-block}
+  .mstep h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;margin:12px 0 8px}
+  .mstep p{color:var(--text-dim);font-size:13.5px}
+
+  /* WORK w/ video */
+  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .wcard{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .wcard:hover{border-color:var(--violet-deep);transform:translateY(-4px)}
+  .wthumb{position:relative;aspect-ratio:16/9;background:linear-gradient(150deg,var(--surface-2),#0e1030);display:grid;place-items:center;border-bottom:1px solid var(--line-soft);overflow:hidden}
+  .wthumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,125,255,.10),transparent 65%)}
+  .play{position:relative;z-index:2;width:62px;height:62px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
+  .play:hover{transform:scale(1.1);box-shadow:0 0 0 12px rgba(139,125,255,.12)}
+  .play svg{width:22px;height:22px;fill:#0c0916;margin-left:3px}
+  .wthumb.soon .play{background:var(--surface-2);border:1px solid var(--line);cursor:default}
+  .wthumb.soon .play:hover{transform:none;box-shadow:none}
+  .wthumb.soon .play svg{fill:var(--text-mute)}
+  .soon-lbl{position:absolute;bottom:14px;left:16px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:rgba(12,13,26,.75);padding:5px 10px;border-radius:100px;border:1px solid var(--line-soft)}
+  .wbody{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+  .wtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px}
+  .wtag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);padding:5px 10px;border:1px solid var(--line);border-radius:100px;white-space:nowrap}
+  .wcard h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:20px;margin-bottom:7px}
+  .wcard p{font-size:14px;color:var(--text-dim);margin-bottom:16px}
+  .wlink{margin-top:auto;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute);display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+  .wlink:hover{color:var(--violet)}
+  .wlink svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:200;background:rgba(6,7,16,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-inner{width:100%;max-width:980px;position:relative}
+  .modal video{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:#000}
+  .modal-close{position:absolute;top:-46px;right:0;background:none;border:1px solid var(--line);border-radius:8px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;transition:border-color .2s}
+  .modal-close:hover{border-color:var(--violet)}
+  .modal-close svg{width:18px;height:18px;stroke:var(--text);stroke-width:2}
+  .modal-title{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute);position:absolute;top:-42px;left:0;letter-spacing:.1em;text-transform:uppercase}
+
+  /* SMB band */
+  .smb{background:#0f1128;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .smb-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px;flex-wrap:wrap}
+  .smb-head .l{max-width:40em}
+  .smb-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.1;letter-spacing:-.01em;margin:10px 0 10px}
+  .smb-head p{color:var(--text-dim);font-size:15.5px}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prod{padding:22px;background:var(--surface);border:1px solid var(--line-soft);border-radius:13px;transition:border-color .25s,transform .25s}
+  .prod:hover{border-color:var(--violet-deep);transform:translateY(-3px)}
+  .prod .pname{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:18px;margin-bottom:5px}
+  .prod .pname em{color:var(--violet);font-style:normal}
+  .prod .pdesc{font-size:12.5px;color:var(--text-dim)}
+
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+  .contact-left h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,46px);line-height:1.04;letter-spacing:-.015em;margin-bottom:18px}
+  .contact-left p{color:var(--text-dim);font-size:16.5px;margin-bottom:26px;max-width:30em}
+  .cinfo{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line-soft)}
+  .cinfo:last-child{border-bottom:none}
+  .cinfo svg{width:20px;height:20px;stroke:var(--violet);fill:none;stroke-width:1.7;flex:none;margin-top:3px}
+  .cinfo .cl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:3px}
+  .cinfo .cv{font-size:15.5px;word-break:break-word}
+  .cinfo a.cv:hover{color:var(--violet)}
+  .form{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .form h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:21px;margin-bottom:6px}
+  .form .fsub{font-size:13.5px;color:var(--text-mute);margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);margin-bottom:7px}
+  .field input,.field textarea,.field select{width:100%;background:var(--base);border:1px solid var(--line);border-radius:9px;padding:12px 14px;color:var(--text);font-family:inherit;font-size:14.5px;transition:border-color .2s}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--violet)}
+  .field textarea{resize:vertical;min-height:88px}
+  .form .btn-p{width:100%;justify-content:center;margin-top:4px}
+
+  footer{border-top:1px solid var(--line-soft);background:#0f1128;padding:52px 0 34px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:34px;border-bottom:1px solid var(--line-soft)}
+  .foot-brand .brand{margin-bottom:14px}
+  .foot-brand p{font-size:14px;color:var(--text-dim);max-width:28em}
+  .foot-col h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14.5px;color:var(--text-dim);padding:5px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--violet)}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute)}
+  .foot-bot .fv{color:var(--violet)}
+
+  .fab{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:var(--violet);display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(139,125,255,.6);transition:transform .2s}
+  .fab:hover{transform:scale(1.08)}
+  .fab svg{width:29px;height:29px}
+
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:42px}.orq{max-width:480px}
+    .edge-grid{grid-template-columns:1fr;gap:34px}
+    .svcs{grid-template-columns:1fr}.msteps{grid-template-columns:1fr 1fr;gap:30px}
+    .work{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr 1fr}
+    .contact-grid{grid-template-columns:1fr;gap:36px}.foot-top{grid-template-columns:1fr;gap:30px}
+  }
+  @media(max-width:720px){
+    .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:rgba(12,13,26,.98);backdrop-filter:blur(14px);gap:0;padding:8px 0;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .3s;z-index:55}
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:14px 24px;width:100%;border-bottom:1px solid var(--line-soft)}
+    .nav-links a::after{display:none}
+    .menu-btn{display:block}.nav-cta .btn-ghost{display:none}
+    .msteps{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr}
+    .modal-close{top:auto;bottom:-46px;right:50%;transform:translateX(50%)}
+    .modal-title{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .eq .bar{animation:none;transform:scaleY(.7)}.orq-top .sync .dot,.hero-badge .live{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16V8M8 19V5M12 17V7M16 20V4M20 15V9" stroke="#eef0fa" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="brand-txt"><strong>Orquesta Supply</strong><span>Operaciones · Software</span></div>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#servicios">Servicios</a><a href="#metodo">Método</a><a href="#trabajos">Trabajos</a><a href="#negocios">Para negocios</a><a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#trabajos" class="btn btn-ghost">Ver trabajos</a>
+      <a href="#contacto" class="btn btn-p">Agendar diagnóstico</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<section class="hero">
+  <div class="dots"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge reveal in"><span class="live"></span> Monterrey · Nuevo León · Remoto</div>
+      <h1 class="reveal in" data-d="1">Orquestamos tu <span class="hl">operación.</span></h1>
+      <p class="lede reveal in" data-d="2">Consultoría de procesos, automatización y software a la medida. La diferencia no es que hacemos tecnología — es que entendemos tu operación porque la dirigimos 20 años en piso de planta.</p>
+      <div class="hero-cta reveal in" data-d="3">
+        <a href="#contacto" class="btn btn-p btn-lg">Agendar diagnóstico</a>
+        <a href="#trabajos" class="btn btn-ghost btn-lg">Ver trabajos</a>
+      </div>
+      <div class="hero-foot reveal in" data-d="3"><span><b>◆</b> S&OP · Planeación · Inventarios</span><span><b>◆</b> Automatización · IA · Desarrollo</span></div>
+    </div>
+    <div class="orq reveal in" data-d="2" aria-label="Operación en sincronía">
+      <div class="orq-top"><span class="lbl">Operación · en tiempo real</span><span class="sync"><span class="dot"></span>En sincronía</span></div>
+      <div class="eq" id="eq"></div>
+      <div class="orq-lanes">
+        <div class="lane"><span class="n">Demanda</span><span class="v">▲ alineada</span></div>
+        <div class="lane"><span class="n">Inventario</span><span class="v">▲ óptimo</span></div>
+        <div class="lane"><span class="n">Procesos</span><span class="v">▲ automatizados</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="edge">
+  <div class="wrap edge-grid">
+    <div class="reveal">
+      <span class="eyebrow">El diferenciador</span>
+      <h2>Software que nace en el <span class="hl">piso de planta.</span></h2>
+      <p>Cualquiera arma una herramienta con IA hoy. Lo raro es que quien la arma haya pasado 20 años dirigiendo la operación real: planeación de demanda, S&OP, plan maestro, inventarios y cuellos de botella en plantas industriales.</p>
+      <p>Por eso no entregamos "un sistema bonito". Entregamos soluciones que resuelven cómo trabaja tu operación de verdad — porque hemos estado del otro lado.</p>
+    </div>
+    <div class="edge-stats reveal" data-d="1">
+      <div class="estat"><span class="num">20</span><span class="t">años dirigiendo operaciones, S&OP y planeación en la industria</span></div>
+      <div class="estat"><span class="num">Multi</span><span class="t">planta — experiencia coordinando operaciones en varios sitios</span></div>
+      <div class="estat"><span class="num">100%</span><span class="t">a la medida — nada de plantillas ni recetas genéricas</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES: industry first -->
+<section class="block" id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Para empresas e industria</h2>
+      <p>Donde una operación desalineada cuesta millones. Aquí es donde la experiencia de planta hace la diferencia.</p>
+    </div>
+    <div class="svcs">
+      <div class="svc feat reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l3-4 3 2 5-7"/></svg></div>
+        <h3>Consultoría de operaciones</h3>
+        <p>Planeación de demanda, S&OP, plan maestro e inventarios. Diagnóstico de cuellos de botella y rediseño de procesos.</p>
+        <ul><li>S&OP y planeación de demanda</li><li>Plan maestro de producción</li><li>Inventarios y forecast accuracy</li><li>Cuellos de botella y mejora</li></ul>
+      </div>
+      <div class="svc reveal" data-d="1">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3>Torres de control y dashboards</h3>
+        <p>Visibilidad de tu operación en una sola pantalla. Indicadores que sí se usan para decidir, no reportes que nadie abre.</p>
+        <ul><li>Torre de control multiplanta</li><li>Dashboards de indicadores</li><li>Tableros de forecast y ATP</li></ul>
+      </div>
+      <div class="svc reveal" data-d="2">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v2a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3ZM5 11a7 7 0 0 0 14 0M12 18v4"/></svg></div>
+        <h3>Automatización de procesos</h3>
+        <p>Lo que hoy se hace a mano durante horas, hecho en minutos. Automatización de tareas repetitivas y flujos operativos.</p>
+        <ul><li>Automatización de reportes</li><li>Flujos y tareas repetitivas</li><li>Integraciones a la medida</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="block method" id="metodo">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Cómo trabajo</span><h2>Del diagnóstico al acompañamiento</h2></div>
+    <div class="msteps">
+      <div class="mstep reveal"><span class="num">01 / DIAGNÓSTICO</span><h4>Entiendo tu operación</h4><p>Antes de proponer nada, entiendo cómo funciona tu operación y dónde se está fugando tiempo, inventario o margen.</p></div>
+      <div class="mstep reveal" data-d="1"><span class="num">02 / DISEÑO</span><h4>Propongo la solución</h4><p>Defino qué construir o rediseñar, con alcance, tiempos y precio claros desde el inicio.</p></div>
+      <div class="mstep reveal" data-d="2"><span class="num">03 / IMPLEMENTACIÓN</span><h4>Lo construyo y lo lanzo</h4><p>Desarrollo o rediseño a la medida, lo pongo en marcha y lo dejo operando con tu gente.</p></div>
+      <div class="mstep reveal" data-d="3"><span class="num">04 / ACOMPAÑAMIENTO</span><h4>Te acompaño</h4><p>Ajustes, mejoras y soporte. No desaparezco al entregar — la operación sigue evolucionando.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK with videos -->
+<section class="block" id="trabajos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Trabajos</span>
+      <h2>Proyectos reales, funcionando</h2>
+      <p>No maquetas. Herramientas y sitios entregados a clientes reales — con demo en video de cómo funcionan.</p>
+    </div>
+    <div class="work">
+
+      <div class="wcard reveal">
+        <div class="wthumb soon">
+          <button class="play" data-video="" data-title="Torre de control multiplanta" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="soon-lbl">Video próximamente</span>
+        </div>
+        <div class="wbody">
+          <div class="wtop"><span class="wtag">Operaciones · Torre de control</span></div>
+          <h3>Torre de control multiplanta</h3>
+          <p>Visibilidad de demanda, inventario y disponibilidad en una sola pantalla para operación en varias plantas.</p>
+          <span class="wlink">Demo en video próximamente</span>
+        </div>
+      </div>
+
+      <div class="wcard reveal" data-d="1">
+        <div class="wthumb soon">
+          <button class="play" data-video="" data-title="Aura — Asistente de WhatsApp" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="soon-lbl">Video próximamente</span>
+        </div>
+        <div class="wbody">
+          <div class="wtop"><span class="wtag">Automatización · IA</span></div>
+          <h3>Aura — Asistente de WhatsApp</h3>
+          <p>Asistente con IA que atiende, responde y captura prospectos solo, con panel de control. En uso por cliente real.</p>
+          <span class="wlink">Demo en video próximamente</span>
+        </div>
+      </div>
+
+      <div class="wcard reveal">
+        <div class="wthumb soon">
+          <button class="play" data-video="" data-title="ISN Inspecciones" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="soon-lbl">Video próximamente</span>
+        </div>
+        <div class="wbody">
+          <div class="wtop"><span class="wtag">Sitio web · Industrial</span></div>
+          <h3>ISN Inspecciones</h3>
+          <p>Sitio para empresa de pruebas hidrostáticas y ensayos no destructivos, enfocado al comprador industrial.</p>
+          <a class="wlink" href="https://isn-inspecciones.vercel.app/" target="_blank" rel="noopener">isn-inspecciones.vercel.app <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wcard reveal" data-d="1">
+        <div class="wthumb soon">
+          <button class="play" data-video="" data-title="Soluciones Integrales JANK" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="soon-lbl">Video próximamente</span>
+        </div>
+        <div class="wbody">
+          <div class="wtop"><span class="wtag">Sitio web · Servicios</span></div>
+          <h3>Soluciones Integrales JANK</h3>
+          <p>Sitio de servicios eléctricos con doble mercado —residencial e industrial— y formulario que clasifica el lead.</p>
+          <a class="wlink" href="https://jank-soluciones.vercel.app/" target="_blank" rel="noopener">jank-soluciones.vercel.app <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SMB / secondary -->
+<section class="block smb" id="negocios">
+  <div class="wrap">
+    <div class="smb-head reveal">
+      <div class="l">
+        <span class="eyebrow">También para negocios y pymes</span>
+        <h2>Soluciones listas para negocios más chicos</h2>
+        <p>Si tu negocio no necesita una consultoría de operaciones sino simplemente vender mejor, tenemos productos listos para adaptarse.</p>
+      </div>
+      <a href="#contacto" class="btn btn-ghost">Preguntar por estos</a>
+    </div>
+    <div class="prod-grid">
+      <div class="prod reveal"><div class="pname">Aur<em>a</em></div><div class="pdesc">Asistente de WhatsApp con IA y panel de captura de clientes.</div></div>
+      <div class="prod reveal" data-d="1"><div class="pname">Mesa<em>Zo</em></div><div class="pdesc">Pedidos por QR y pantalla de cocina para restaurantes.</div></div>
+      <div class="prod reveal" data-d="2"><div class="pname">Sitios <em>web</em></div><div class="pdesc">Presencia digital a la medida, con formulario directo a WhatsApp.</div></div>
+      <div class="prod reveal" data-d="3"><div class="pname">Rifa<em>Zo</em> · Quiniela<em>Zo</em></div><div class="pdesc">Plataformas de rifas y quinielas en línea.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block" id="contacto" style="background:var(--base-2);border-top:1px solid var(--line-soft)">
+  <div class="wrap contact-grid">
+    <div class="contact-left reveal">
+      <span class="eyebrow">Hablemos</span>
+      <h2>¿Qué quieres poner en sincronía?</h2>
+      <p>Cuéntame qué necesita tu operación o tu negocio, y te propongo por dónde empezar. El diagnóstico inicial no tiene costo.</p>
+      <div class="cinfo"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div class="cl">WhatsApp / Teléfono</div><a href="https://wa.me/528115967016" target="_blank" rel="noopener" class="cv mono">81 1596 7016</a></div></div>
+      <div class="cinfo"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg><div><div class="cl">Correo</div><a href="mailto:juanjo.perez86@hotmail.com" class="cv">juanjo.perez86@hotmail.com</a></div></div>
+      <div class="cinfo"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="cl">Base</div><div class="cv">Monterrey, Nuevo León · Servicio remoto en todo México</div></div></div>
+    </div>
+    <div class="form reveal" data-d="1">
+      <h3>Cuéntame tu proyecto</h3>
+      <p class="fsub">Respondo el mismo día.</p>
+      <div class="field"><label>Nombre y empresa</label><input id="f-nombre" type="text" placeholder="Ej. Ana López — Planta MTY"></div>
+      <div class="field"><label>Qué necesitas</label><select id="f-serv">
+        <option>Consultoría de operaciones / S&OP</option>
+        <option>Torre de control / dashboards</option>
+        <option>Automatización de procesos</option>
+        <option>Sitio o página web</option>
+        <option>Asistente de WhatsApp (Aura)</option>
+        <option>Otro / no estoy seguro</option>
+      </select></div>
+      <div class="field"><label>Cuéntame más</label><textarea id="f-msg" placeholder="¿Qué quieres lograr? ¿Dónde se te está yendo tiempo, inventario o margen hoy?"></textarea></div>
+      <a href="#" id="sendBtn" class="btn btn-p"><svg viewBox="0 0 24 24" fill="#0c0916"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 5 5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7-2.8-1.2-4.6-4.1-4.7-4.3-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4 0 .5-.1l.7-.9c.2-.2.4-.2.5-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>Enviar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16V8M8 19V5M12 17V7M16 20V4M20 15V9" stroke="#eef0fa" stroke-width="2.2" stroke-linecap="round"/></svg></div><div class="brand-txt"><strong>Orquesta Supply</strong><span>Operaciones · Software</span></div></div>
+        <p>Consultoría de operaciones, automatización y software que nacen en el piso de planta. Monterrey, N.L.</p>
+      </div>
+      <div class="foot-col"><h5>Industria</h5><a href="#servicios">Consultoría de operaciones</a><a href="#servicios">Torres de control</a><a href="#servicios">Automatización de procesos</a><a href="#trabajos">Trabajos</a></div>
+      <div class="foot-col"><h5>Negocios</h5><a href="#negocios">Sitios web</a><a href="#negocios">Aura — WhatsApp</a><a href="#negocios">MesaZo</a><a href="https://wa.me/528115967016" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:juanjo.perez86@hotmail.com">Correo</a></div>
+    </div>
+    <div class="foot-bot">
+      <div>© 2026 Orquesta Supply · Monterrey, N.L.</div>
+      <div><span class="fv">Orquestamos tu operación</span></div>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/528115967016?text=Hola%20Orquesta%20Supply,%20me%20interesa%20platicar%20de%20un%20proyecto." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#0c0916"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 5 5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7-2.8-1.2-4.6-4.1-4.7-4.3-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4 0 .5-.1l.7-.9c.2-.2.4-.2.5-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg></a>
+
+<!-- VIDEO MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <span class="modal-title" id="modalTitle"></span>
+    <button class="modal-close" id="modalClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <video id="modalVideo" controls playsinline></video>
+  </div>
+</div>
+
+<script>
+  // equalizer
+  const eq=document.getElementById('eq');
+  [.5,.75,.4,.9,.6,1,.55,.8,.45,.7,.5,.85,.6,.95,.5].forEach((h,i)=>{
+    const b=document.createElement('div');b.className='bar';
+    b.style.height=(h*100)+'%';b.style.animationDelay=(-i*.12)+'s';
+    b.style.animationDuration=(1.4+(i%4)*.15)+'s';eq.appendChild(b);
+  });
+
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>20));
+  const mb=document.getElementById('menuBtn'),nl=document.getElementById('navlinks');
+  mb.addEventListener('click',()=>nl.classList.toggle('open'));
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+  /* ============================================================
+     VIDEOS — CÓMO ACTIVARLOS
+     1) Guarda tus videos .mp4 en la carpeta /videos junto al index.html
+     2) En cada botón .play de arriba, pon la ruta en data-video, ej:
+        data-video="videos/aura.mp4"
+     3) Quita la clase "soon" del div .wthumb de esa tarjeta
+        y borra su <span class="soon-lbl">.
+     Listo — el botón abrirá el video en pantalla completa.
+     ============================================================ */
+  const modal=document.getElementById('modal');
+  const mv=document.getElementById('modalVideo');
+  const mt=document.getElementById('modalTitle');
+  document.querySelectorAll('.play').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const src=btn.dataset.video;
+      if(!src) return; // sin video aún
+      mv.src=src; mt.textContent=btn.dataset.title||'';
+      modal.classList.add('open'); mv.play().catch(()=>{});
+    });
+  });
+  function closeModal(){modal.classList.remove('open');mv.pause();mv.removeAttribute('src');mv.load();}
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+
+  document.getElementById('sendBtn').addEventListener('click',(ev)=>{
+    ev.preventDefault();
+    const n=document.getElementById('f-nombre').value.trim();
+    const s=document.getElementById('f-serv').value;
+    const m=document.getElementById('f-msg').value.trim();
+    let txt='Hola Orquesta Supply, me interesa platicar de un proyecto.';
+    if(n)txt+='\n\nNombre/empresa: '+n;
+    txt+='\nQué necesito: '+s;
+    if(m)txt+='\nDetalle: '+m;
+    location.href='https://wa.me/528115967016?text='+encodeURIComponent(txt);
+  });
+</script>
+</body>
+</html>
