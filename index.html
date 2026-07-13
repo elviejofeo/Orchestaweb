@@ -90,12 +90,6 @@
   .estat .num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:34px;color:var(--violet);line-height:1;flex:none}
   .estat .t{font-size:14px;color:var(--text-dim)}
 
-  /* audience banner */
-  .aud-band{display:flex;align-items:center;gap:14px;margin-bottom:32px;padding:14px 20px;background:var(--surface);border:1px solid var(--line);border-radius:100px;width:fit-content}
-  .aud-band .pill{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:100px}
-  .aud-band .pill.on{background:var(--violet);color:#0c0916}
-  .aud-band .pill.off{color:var(--text-mute)}
-
   .svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .svc{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:30px;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
   .svc:hover{border-color:var(--violet-deep);transform:translateY(-5px)}
@@ -115,43 +109,50 @@
   .mstep h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;margin:12px 0 8px}
   .mstep p{color:var(--text-dim);font-size:13.5px}
 
-  /* WORK w/ video */
-  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .wcard{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  /* ===== WORK ===== */
+  .work-group{margin-bottom:64px}
+  .work-group:last-child{margin-bottom:0}
+  .wg-head{display:flex;align-items:center;gap:16px;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+  .wg-head h3{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .wg-head .count{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-mute);padding:4px 10px;border:1px solid var(--line);border-radius:100px}
+  .wg-head .sub{margin-left:auto;font-size:14px;color:var(--text-mute)}
+  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .wcard{background:var(--surface);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
   .wcard:hover{border-color:var(--violet-deep);transform:translateY(-4px)}
-  .wthumb{position:relative;aspect-ratio:16/9;background:linear-gradient(150deg,var(--surface-2),#0e1030);display:grid;place-items:center;border-bottom:1px solid var(--line-soft);overflow:hidden}
-  .wthumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,125,255,.10),transparent 65%)}
-  .play{position:relative;z-index:2;width:62px;height:62px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
-  .play:hover{transform:scale(1.1);box-shadow:0 0 0 12px rgba(139,125,255,.12)}
-  .play svg{width:22px;height:22px;fill:#0c0916;margin-left:3px}
-  .wthumb.soon .play{background:var(--surface-2);border:1px solid var(--line);cursor:default}
-  .wthumb.soon .play:hover{transform:none;box-shadow:none}
-  .wthumb.soon .play svg{fill:var(--text-mute)}
-  .soon-lbl{position:absolute;bottom:14px;left:16px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:rgba(12,13,26,.75);padding:5px 10px;border-radius:100px;border:1px solid var(--line-soft)}
-  .wbody{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
-  .wtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px}
-  .wtag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);padding:5px 10px;border:1px solid var(--line);border-radius:100px;white-space:nowrap}
-  .wcard h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:20px;margin-bottom:7px}
-  .wcard p{font-size:14px;color:var(--text-dim);margin-bottom:16px}
-  .wlink{margin-top:auto;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute);display:inline-flex;align-items:center;gap:7px;transition:color .2s}
-  .wlink:hover{color:var(--violet)}
-  .wlink svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+  .wcard.star{border-color:var(--violet-deep);background:linear-gradient(160deg,#1b1f42,var(--surface))}
+  .wthumb{position:relative;aspect-ratio:16/10;background:linear-gradient(150deg,var(--surface-2),#0e1030);display:grid;place-items:center;border-bottom:1px solid var(--line-soft);overflow:hidden}
+  .wthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .wthumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,125,255,.08),transparent 65%);pointer-events:none}
+  .media-btn{position:relative;z-index:2;width:54px;height:54px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
+  .media-btn:hover{transform:scale(1.1);box-shadow:0 0 0 10px rgba(139,125,255,.12)}
+  .media-btn svg{width:20px;height:20px;fill:#0c0916}
+  .media-btn.play svg{margin-left:3px}
+  /* estado vacío */
+  .wthumb.empty .media-btn{background:transparent;border:1px dashed var(--line);cursor:default}
+  .wthumb.empty .media-btn:hover{transform:none;box-shadow:none}
+  .wthumb.empty .media-btn svg{fill:var(--text-mute)}
+  .chip{position:absolute;bottom:12px;left:14px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:rgba(12,13,26,.8);padding:4px 9px;border-radius:100px;border:1px solid var(--line-soft)}
+  .badge-live{position:absolute;top:12px;right:12px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--mint);color:#062018;padding:4px 10px;border-radius:100px;font-weight:700;display:flex;align-items:center;gap:6px}
+  .badge-live::before{content:"";width:5px;height:5px;border-radius:50%;background:#062018}
+  .wbody{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .wtag{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);margin-bottom:9px;display:block}
+  .wcard h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;margin-bottom:6px}
+  .wcard p{font-size:13.5px;color:var(--text-dim)}
 
   /* modal */
-  .modal{position:fixed;inset:0;z-index:200;background:rgba(6,7,16,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+  .modal{position:fixed;inset:0;z-index:200;background:rgba(6,7,16,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:28px}
   .modal.open{display:flex}
-  .modal-inner{width:100%;max-width:980px;position:relative}
-  .modal video{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:#000}
+  .modal-inner{width:100%;max-width:1000px;position:relative}
+  .modal video,.modal img{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:#000;max-height:82vh;object-fit:contain}
   .modal-close{position:absolute;top:-46px;right:0;background:none;border:1px solid var(--line);border-radius:8px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;transition:border-color .2s}
   .modal-close:hover{border-color:var(--violet)}
-  .modal-close svg{width:18px;height:18px;stroke:var(--text);stroke-width:2}
+  .modal-close svg{width:18px;height:18px;stroke:var(--text);stroke-width:2;fill:none}
   .modal-title{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute);position:absolute;top:-42px;left:0;letter-spacing:.1em;text-transform:uppercase}
 
-  /* SMB band */
   .smb{background:#0f1128;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
   .smb-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px;flex-wrap:wrap}
   .smb-head .l{max-width:40em}
-  .smb-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.1;letter-spacing:-.01em;margin:10px 0 10px}
+  .smb-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.1;margin:10px 0 10px}
   .smb-head p{color:var(--text-dim);font-size:15.5px}
   .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .prod{padding:22px;background:var(--surface);border:1px solid var(--line-soft);border-radius:13px;transition:border-color .25s,transform .25s}
@@ -197,8 +198,9 @@
     .hero-grid{grid-template-columns:1fr;gap:42px}.orq{max-width:480px}
     .edge-grid{grid-template-columns:1fr;gap:34px}
     .svcs{grid-template-columns:1fr}.msteps{grid-template-columns:1fr 1fr;gap:30px}
-    .work{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr 1fr}
+    .work{grid-template-columns:1fr 1fr}.prod-grid{grid-template-columns:1fr 1fr}
     .contact-grid{grid-template-columns:1fr;gap:36px}.foot-top{grid-template-columns:1fr;gap:30px}
+    .wg-head .sub{display:none}
   }
   @media(max-width:720px){
     .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:rgba(12,13,26,.98);backdrop-filter:blur(14px);gap:0;padding:8px 0;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .3s;z-index:55}
@@ -207,6 +209,7 @@
     .nav-links a::after{display:none}
     .menu-btn{display:block}.nav-cta .btn-ghost{display:none}
     .msteps{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr}
+    .work{grid-template-columns:1fr}
     .modal-close{top:auto;bottom:-46px;right:50%;transform:translateX(50%)}
     .modal-title{display:none}
   }
@@ -277,7 +280,6 @@
   </div>
 </div>
 
-<!-- SERVICES: industry first -->
 <section class="block" id="servicios">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -290,13 +292,13 @@
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l3-4 3 2 5-7"/></svg></div>
         <h3>Consultoría de operaciones</h3>
         <p>Planeación de demanda, S&OP, plan maestro e inventarios. Diagnóstico de cuellos de botella y rediseño de procesos.</p>
-        <ul><li>S&OP y planeación de demanda</li><li>Plan maestro de producción</li><li>Inventarios y forecast accuracy</li><li>Cuellos de botella y mejora</li></ul>
+        <ul><li>S&OP y planeación de demanda</li><li>Plan maestro de producción</li><li>Inventarios y forecast accuracy</li><li>Cuellos de botella y mermas</li></ul>
       </div>
       <div class="svc reveal" data-d="1">
         <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <h3>Torres de control y dashboards</h3>
         <p>Visibilidad de tu operación en una sola pantalla. Indicadores que sí se usan para decidir, no reportes que nadie abre.</p>
-        <ul><li>Torre de control multiplanta</li><li>Dashboards de indicadores</li><li>Tableros de forecast y ATP</li></ul>
+        <ul><li>Torre de control multiplanta</li><li>Dashboards de indicadores</li><li>Tableros de forecast</li></ul>
       </div>
       <div class="svc reveal" data-d="2">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v2a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3ZM5 11a7 7 0 0 0 14 0M12 18v4"/></svg></div>
@@ -308,7 +310,6 @@
   </div>
 </section>
 
-<!-- METHOD -->
 <section class="block method" id="metodo">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Cómo trabajo</span><h2>Del diagnóstico al acompañamiento</h2></div>
@@ -321,73 +322,188 @@
   </div>
 </section>
 
-<!-- WORK with videos -->
+<!-- ============================================================
+     TRABAJOS
+     CÓMO LLENAR UNA TARJETA:
+     · VIDEO  → en el botón: class="media-btn play" data-type="video" data-src="media/archivo.mp4"
+                y quita la clase "empty" del div .wthumb, y borra su <span class="chip">
+     · IMAGEN → en el botón: class="media-btn" data-type="image" data-src="media/archivo.png"
+                y dentro del .wthumb agrega: <img src="media/archivo.png" alt="">
+                quita "empty" y borra el <span class="chip">
+     · VACÍA  → déjala como está (se ve intencional, dice "En construcción")
+     ============================================================ -->
 <section class="block" id="trabajos">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Trabajos</span>
-      <h2>Proyectos reales, funcionando</h2>
-      <p>No maquetas. Herramientas y sitios entregados a clientes reales — con demo en video de cómo funcionan.</p>
+      <h2>Lo que he construido</h2>
+      <p>Herramientas de operación y soluciones para negocios. Todo funcionando, nada de maquetas.</p>
     </div>
-    <div class="work">
 
-      <div class="wcard reveal">
-        <div class="wthumb soon">
-          <button class="play" data-video="" data-title="Torre de control multiplanta" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="soon-lbl">Video próximamente</span>
-        </div>
-        <div class="wbody">
-          <div class="wtop"><span class="wtag">Operaciones · Torre de control</span></div>
-          <h3>Torre de control multiplanta</h3>
-          <p>Visibilidad de demanda, inventario y disponibilidad en una sola pantalla para operación en varias plantas.</p>
-          <span class="wlink">Demo en video próximamente</span>
-        </div>
+    <!-- BLOQUE 1: INDUSTRIA -->
+    <div class="work-group">
+      <div class="wg-head reveal">
+        <h3>Operaciones e industria</h3>
+        <span class="count">9</span>
+        <span class="sub">Herramientas de planeación, control y automatización</span>
       </div>
+      <div class="work">
 
-      <div class="wcard reveal" data-d="1">
-        <div class="wthumb soon">
-          <button class="play" data-video="" data-title="Aura — Asistente de WhatsApp" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="soon-lbl">Video próximamente</span>
+        <div class="wcard reveal">
+          <div class="wthumb empty">
+            <button class="media-btn play" data-type="video" data-src="" data-title="Torre de control"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Video · Torre de control</span><h4>Torre de control</h4><p>Visibilidad de demanda, inventario y disponibilidad multiplanta en una sola pantalla.</p></div>
         </div>
-        <div class="wbody">
-          <div class="wtop"><span class="wtag">Automatización · IA</span></div>
-          <h3>Aura — Asistente de WhatsApp</h3>
-          <p>Asistente con IA que atiende, responde y captura prospectos solo, con panel de control. En uso por cliente real.</p>
-          <span class="wlink">Demo en video próximamente</span>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Plan maestro"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Planeación</span><h4>Plan maestro (MPS)</h4><p>Programa maestro de producción: qué producir, cuánto y cuándo, alineado a la demanda.</p></div>
         </div>
+
+        <div class="wcard reveal" data-d="2">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Forecast accuracy"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Indicadores</span><h4>Forecast accuracy</h4><p>Medición y seguimiento de la exactitud del pronóstico. Dónde y por qué falla la demanda.</p></div>
+        </div>
+
+        <div class="wcard reveal">
+          <div class="wthumb empty">
+            <button class="media-btn play" data-type="video" data-src="" data-title="Macros de automatización"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Video · Automatización</span><h4>Macros de automatización</h4><p>Tareas que tomaban horas, ejecutadas en minutos. Menos error humano, más tiempo para decidir.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Scripting y automatización ERP"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Scripting ERP</span><h4>Automatización en ERP</h4><p>Scripts que eliminan la captura manual repetitiva. Flujo antes / después y tiempo ahorrado.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="2">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Planeación de producción"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Producción</span><h4>Planeación de producción</h4><p>Secuenciación y capacidad: cómo se decide qué corre en cada línea y en qué orden.</p></div>
+        </div>
+
+        <div class="wcard reveal">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Cuellos de botella"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Diagnóstico</span><h4>Cuellos de botella</h4><p>Identificación del recurso que limita toda la operación — y qué hacer con él.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Proceso S&OP"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Proceso</span><h4>Proceso S&OP</h4><p>El ciclo que alinea ventas, operaciones y finanzas en un solo plan. Cómo se implementa.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="2">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Control de mermas"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Inventarios</span><h4>Control de mermas</h4><p>Dónde se está perdiendo material y cuánto cuesta. Seguimiento y reducción.</p></div>
+        </div>
+
       </div>
-
-      <div class="wcard reveal">
-        <div class="wthumb soon">
-          <button class="play" data-video="" data-title="ISN Inspecciones" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="soon-lbl">Video próximamente</span>
-        </div>
-        <div class="wbody">
-          <div class="wtop"><span class="wtag">Sitio web · Industrial</span></div>
-          <h3>ISN Inspecciones</h3>
-          <p>Sitio para empresa de pruebas hidrostáticas y ensayos no destructivos, enfocado al comprador industrial.</p>
-          <a class="wlink" href="https://isn-inspecciones.vercel.app/" target="_blank" rel="noopener">isn-inspecciones.vercel.app <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        </div>
-      </div>
-
-      <div class="wcard reveal" data-d="1">
-        <div class="wthumb soon">
-          <button class="play" data-video="" data-title="Soluciones Integrales JANK" aria-label="Video próximamente"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="soon-lbl">Video próximamente</span>
-        </div>
-        <div class="wbody">
-          <div class="wtop"><span class="wtag">Sitio web · Servicios</span></div>
-          <h3>Soluciones Integrales JANK</h3>
-          <p>Sitio de servicios eléctricos con doble mercado —residencial e industrial— y formulario que clasifica el lead.</p>
-          <a class="wlink" href="https://jank-soluciones.vercel.app/" target="_blank" rel="noopener">jank-soluciones.vercel.app <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        </div>
-      </div>
-
     </div>
+
+    <!-- BLOQUE 2: NEGOCIOS -->
+    <div class="work-group">
+      <div class="wg-head reveal">
+        <h3>Negocios y pymes</h3>
+        <span class="count">8</span>
+        <span class="sub">Software y presencia digital para negocios</span>
+      </div>
+      <div class="work">
+
+        <div class="wcard star reveal">
+          <div class="wthumb empty">
+            <span class="badge-live">Cliente activo</span>
+            <button class="media-btn play" data-type="video" data-src="" data-title="CETEC — Aura"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Video · IA · WhatsApp</span><h4>CETEC — Aura</h4><p>Asistente de WhatsApp con IA que atiende, responde y captura prospectos solo. En operación con cliente real.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="ISN Inspecciones"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Sitio web</span><h4>ISN Inspecciones</h4><p>Sitio para empresa de pruebas hidrostáticas y ensayos no destructivos, enfocado al comprador industrial.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="2">
+          <div class="wthumb empty">
+            <button class="media-btn play" data-type="video" data-src="" data-title="MesaZo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Video · Restaurantes</span><h4>MesaZo</h4><p>Pedidos por QR y pantalla de cocina. Piloteado en restaurante real.</p></div>
+        </div>
+
+        <div class="wcard reveal">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="CajaControl"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Administración</span><h4>CajaControl</h4><p>Control de caja chica: gastos, comprobantes y saldo en tiempo real.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Track pedidos textil"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Producción</span><h4>Track de pedidos textil</h4><p>Seguimiento de pedidos por etapa de producción, del corte a la entrega.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="2">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="Evaluador financiero"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Finanzas</span><h4>Evaluador financiero de proyectos</h4><p>Evaluación de rentabilidad y viabilidad de proyectos de inversión.</p></div>
+        </div>
+
+        <div class="wcard reveal">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="English Coach"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Educación</span><h4>English Coach</h4><p>Plataforma de práctica de inglés asistida con IA.</p></div>
+        </div>
+
+        <div class="wcard reveal" data-d="1">
+          <div class="wthumb empty">
+            <button class="media-btn" data-type="image" data-src="" data-title="RifaZo"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4 3 2 4-4 4 3v5H4z"/></svg></button>
+            <span class="chip">En construcción</span>
+          </div>
+          <div class="wbody"><span class="wtag">Imagen · Plataforma</span><h4>RifaZo</h4><p>Plataforma para organizar y vender rifas en línea, con panel de administración.</p></div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- SMB / secondary -->
 <section class="block smb" id="negocios">
   <div class="wrap">
     <div class="smb-head reveal">
@@ -407,7 +523,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="block" id="contacto" style="background:var(--base-2);border-top:1px solid var(--line-soft)">
   <div class="wrap contact-grid">
     <div class="contact-left reveal">
@@ -444,7 +559,7 @@
         <p>Consultoría de operaciones, automatización y software que nacen en el piso de planta. Monterrey, N.L.</p>
       </div>
       <div class="foot-col"><h5>Industria</h5><a href="#servicios">Consultoría de operaciones</a><a href="#servicios">Torres de control</a><a href="#servicios">Automatización de procesos</a><a href="#trabajos">Trabajos</a></div>
-      <div class="foot-col"><h5>Negocios</h5><a href="#negocios">Sitios web</a><a href="#negocios">Aura — WhatsApp</a><a href="#negocios">MesaZo</a><a href="https://wa.me/528115967016" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:juanjo.perez86@hotmail.com">Correo</a></div>
+      <div class="foot-col"><h5>Contacto</h5><a href="https://wa.me/528115967016" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:juanjo.perez86@hotmail.com">Correo</a><a href="#contacto">Agendar diagnóstico</a></div>
     </div>
     <div class="foot-bot">
       <div>© 2026 Orquesta Supply · Monterrey, N.L.</div>
@@ -455,53 +570,54 @@
 
 <a class="fab" href="https://wa.me/528115967016?text=Hola%20Orquesta%20Supply,%20me%20interesa%20platicar%20de%20un%20proyecto." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#0c0916"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 5 5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7-2.8-1.2-4.6-4.1-4.7-4.3-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4 0 .5-.1l.7-.9c.2-.2.4-.2.5-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg></a>
 
-<!-- VIDEO MODAL -->
 <div class="modal" id="modal">
   <div class="modal-inner">
     <span class="modal-title" id="modalTitle"></span>
-    <button class="modal-close" id="modalClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <video id="modalVideo" controls playsinline></video>
+    <button class="modal-close" id="modalClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <video id="modalVideo" controls playsinline style="display:none"></video>
+    <img id="modalImg" alt="" style="display:none">
   </div>
 </div>
 
 <script>
-  // equalizer
   const eq=document.getElementById('eq');
   [.5,.75,.4,.9,.6,1,.55,.8,.45,.7,.5,.85,.6,.95,.5].forEach((h,i)=>{
     const b=document.createElement('div');b.className='bar';
     b.style.height=(h*100)+'%';b.style.animationDelay=(-i*.12)+'s';
     b.style.animationDuration=(1.4+(i%4)*.15)+'s';eq.appendChild(b);
   });
-
   const hdr=document.getElementById('hdr');
   addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>20));
   const mb=document.getElementById('menuBtn'),nl=document.getElementById('navlinks');
   mb.addEventListener('click',()=>nl.classList.toggle('open'));
   nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
 
-  /* ============================================================
-     VIDEOS — CÓMO ACTIVARLOS
-     1) Guarda tus videos .mp4 en la carpeta /videos junto al index.html
-     2) En cada botón .play de arriba, pon la ruta en data-video, ej:
-        data-video="videos/aura.mp4"
-     3) Quita la clase "soon" del div .wthumb de esa tarjeta
-        y borra su <span class="soon-lbl">.
-     Listo — el botón abrirá el video en pantalla completa.
-     ============================================================ */
+  // ===== MEDIA MODAL (video o imagen) =====
   const modal=document.getElementById('modal');
   const mv=document.getElementById('modalVideo');
+  const mi=document.getElementById('modalImg');
   const mt=document.getElementById('modalTitle');
-  document.querySelectorAll('.play').forEach(btn=>{
+  document.querySelectorAll('.media-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const src=btn.dataset.video;
-      if(!src) return; // sin video aún
-      mv.src=src; mt.textContent=btn.dataset.title||'';
-      modal.classList.add('open'); mv.play().catch(()=>{});
+      const src=btn.dataset.src, type=btn.dataset.type;
+      if(!src) return;                       // tarjeta aún vacía
+      mt.textContent=btn.dataset.title||'';
+      if(type==='video'){
+        mi.style.display='none'; mv.style.display='block';
+        mv.src=src; modal.classList.add('open'); mv.play().catch(()=>{});
+      }else{
+        mv.style.display='none'; mi.style.display='block';
+        mi.src=src; modal.classList.add('open');
+      }
     });
   });
-  function closeModal(){modal.classList.remove('open');mv.pause();mv.removeAttribute('src');mv.load();}
+  function closeModal(){
+    modal.classList.remove('open');
+    mv.pause(); mv.removeAttribute('src'); mv.load();
+    mi.removeAttribute('src');
+  }
   document.getElementById('modalClose').addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
   addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
