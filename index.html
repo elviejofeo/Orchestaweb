@@ -123,8 +123,9 @@
   .wthumb{position:relative;aspect-ratio:16/10;background:linear-gradient(150deg,var(--surface-2),#0e1030);display:grid;place-items:center;border-bottom:1px solid var(--line-soft);overflow:hidden}
   .wthumb img{width:100%;height:100%;object-fit:cover;display:block}
   .wthumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,125,255,.08),transparent 65%);pointer-events:none}
-  .media-btn{position:relative;z-index:2;width:54px;height:54px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
-  .media-btn:hover{transform:scale(1.1);box-shadow:0 0 0 10px rgba(139,125,255,.12)}
+  .wthumb:not(.empty){cursor:pointer}
+  .media-btn{position:relative;z-index:2;pointer-events:none;width:54px;height:54px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
+  .wthumb:not(.empty):hover .media-btn{transform:scale(1.1);box-shadow:0 0 0 10px rgba(139,125,255,.12)}
   .media-btn svg{width:20px;height:20px;fill:#0c0916}
   .media-btn.play svg{margin-left:3px}
   /* estado vacío */
@@ -601,8 +602,10 @@
   const mv=document.getElementById('modalVideo');
   const mi=document.getElementById('modalImg');
   const mt=document.getElementById('modalTitle');
-  document.querySelectorAll('.media-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
+  document.querySelectorAll('.wthumb').forEach(thumb=>{
+    const btn=thumb.querySelector('.media-btn');
+    if(!btn) return;
+    thumb.addEventListener('click',()=>{
       const src=btn.dataset.src, type=btn.dataset.type;
       if(!src) return;                       // tarjeta aún vacía
       mt.textContent=btn.dataset.title||'';
