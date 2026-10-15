@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviso de privacidad | Orchesta Labs</title>
+<meta name="description" content="Aviso de privacidad integral de Orchesta Labs (Juan José Pérez Miranda), conforme a la LFPDPPP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0c0d1a;--base-2:#101228;--surface:#161a35;--surface-2:#1d2245;
+    --line:#2c3160;--line-soft:#20244a;--text:#eef0fa;--text-dim:#9aa0c8;--text-mute:#666c96;
+    --violet:#8b7dff;--violet-deep:#6a5be0;--coral:#ff8a6b;--mint:#5fe0b0;--maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{background:var(--base);color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);display:inline-block}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+
+  header{position:sticky;top:0;z-index:60;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(12,13,26,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);box-shadow:0 10px 40px -30px #000}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,var(--violet-deep),#3a2f9e);display:grid;place-items:center;flex:none}
+  .brand-mark svg{width:22px;height:22px}
+  .brand-txt strong{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;display:block;line-height:1}
+  .brand-txt span{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:14.5px;color:var(--text-dim);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--violet);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;padding:11px 18px;border-radius:8px;cursor:pointer;border:none;transition:transform .15s,background .2s,box-shadow .2s,border-color .2s,color .2s}
+  .btn svg{width:17px;height:17px}
+  .btn-p{background:var(--violet);color:#0c0916}
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(139,125,255,.6)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+  .btn-lg{padding:14px 24px;font-size:15.5px}
+  .nav-cta{display:flex;align-items:center;gap:16px}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+  .menu-btn svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{position:relative;padding:96px 0 74px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(720px 460px at 80% 14%,rgba(139,125,255,.14),transparent 60%),radial-gradient(560px 400px at 5% 92%,rgba(95,224,176,.05),transparent 60%),linear-gradient(180deg,var(--base-2),var(--base))}
+  .dots{position:absolute;inset:0;z-index:-1;opacity:.5;background-image:radial-gradient(var(--line-soft) 1.2px,transparent 1.2px);background-size:26px 26px;-webkit-mask-image:radial-gradient(circle at 72% 28%,#000,transparent 70%);mask-image:radial-gradient(circle at 72% 28%,#000,transparent 70%)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:100px;border:1px solid var(--line);background:rgba(22,26,53,.6);margin-bottom:22px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-dim)}
+  .hero-badge .live{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,224,176,.5)}70%{box-shadow:0 0 0 9px rgba(95,224,176,0)}100%{box-shadow:0 0 0 0 rgba(95,224,176,0)}}
+  .hero h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(38px,5.4vw,62px);line-height:1.03;letter-spacing:-.02em;margin:0 0 20px}
+  .hero h1 .hl{color:var(--violet)}
+  .hero p.lede{font-size:18px;color:var(--text-dim);max-width:35em;margin-bottom:30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-foot{margin-top:26px;display:flex;gap:22px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--text-mute)}
+  .hero-foot b{color:var(--violet);font-weight:400}
+
+  .orq{position:relative;background:linear-gradient(160deg,var(--surface),var(--base-2));border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 40px 90px -50px rgba(0,0,0,.95)}
+  .orq-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .orq-top .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
+  .orq-top .sync{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13.5px;color:var(--mint);display:flex;align-items:center;gap:7px}
+  .orq-top .sync .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);animation:pulse 2.2s ease-out infinite}
+  .eq{display:flex;align-items:flex-end;gap:6px;height:130px;margin-bottom:8px}
+  .eq .bar{flex:1;background:linear-gradient(180deg,var(--violet),var(--violet-deep));border-radius:4px 4px 2px 2px;animation:eq 1.8s ease-in-out infinite;transform-origin:bottom;opacity:.9}
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  .orq-lanes{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px}
+  .lane{display:flex;justify-content:space-between;padding:7px 0;font-family:"JetBrains Mono",monospace;font-size:11.5px}
+  .lane .n{color:var(--text-dim)}.lane .v{color:var(--mint)}
+
+  section.block{padding:86px 0}
+  .sec-head{margin-bottom:44px;max-width:42em}
+  .sec-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(28px,3.8vw,42px);line-height:1.06;letter-spacing:-.015em;margin:12px 0 14px}
+  .sec-head p{color:var(--text-dim);font-size:16.5px}
+
+  .edge{background:linear-gradient(120deg,#14163a,#0f1128);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .edge-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;padding:64px 0}
+  .edge h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-.015em;margin-bottom:18px}
+  .edge h2 .hl{color:var(--violet)}
+  .edge p{color:var(--text-dim);font-size:16px;margin-bottom:14px}
+  .edge-stats{display:flex;flex-direction:column;gap:14px}
+  .estat{display:flex;gap:16px;align-items:baseline;padding:18px 22px;background:var(--surface);border:1px solid var(--line-soft);border-radius:12px}
+  .estat .num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:34px;color:var(--violet);line-height:1;flex:none}
+  .estat .t{font-size:14px;color:var(--text-dim)}
+
+  .svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .svc{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:30px;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .svc:hover{border-color:var(--violet-deep);transform:translateY(-5px)}
+  .svc.feat{border-color:var(--violet-deep);background:linear-gradient(160deg,#1b1f42,var(--surface));position:relative}
+  .svc.feat::before{content:"Servicio principal";position:absolute;top:-11px;left:26px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--violet);color:#0c0916;padding:4px 12px;border-radius:100px}
+  .svc .ico{width:50px;height:50px;border-radius:13px;background:rgba(139,125,255,.12);border:1px solid rgba(139,125,255,.28);display:grid;place-items:center;margin-bottom:20px}
+  .svc .ico svg{width:25px;height:25px;stroke:var(--violet);fill:none;stroke-width:1.7}
+  .svc h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:20px;margin-bottom:10px}
+  .svc p{font-size:14.5px;color:var(--text-dim);margin-bottom:18px}
+  .svc ul{list-style:none;margin-top:auto;display:flex;flex-direction:column;gap:9px}
+  .svc ul li{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--text-mute);display:flex;gap:9px;align-items:center}
+  .svc ul li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--violet);flex:none}
+
+  .method{background:#0f1128;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .msteps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .mstep .num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--violet);border-top:2px solid var(--violet);padding-top:14px;display:inline-block}
+  .mstep h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;margin:12px 0 8px}
+  .mstep p{color:var(--text-dim);font-size:13.5px}
+
+  /* ===== WORK ===== */
+  .work-group{margin-bottom:64px}
+  .work-group:last-child{margin-bottom:0}
+  .wg-head{display:flex;align-items:center;gap:16px;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+  .wg-head h3{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .wg-head .count{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-mute);padding:4px 10px;border:1px solid var(--line);border-radius:100px}
+  .wg-head .sub{margin-left:auto;font-size:14px;color:var(--text-mute)}
+  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .wcard{background:var(--surface);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .wcard:hover{border-color:var(--violet-deep);transform:translateY(-4px)}
+  .wcard.star{border-color:var(--violet-deep);background:linear-gradient(160deg,#1b1f42,var(--surface))}
+  .wthumb{position:relative;aspect-ratio:16/10;background:linear-gradient(150deg,var(--surface-2),#0e1030);display:grid;place-items:center;border-bottom:1px solid var(--line-soft);overflow:hidden}
+  .wthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .wthumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(139,125,255,.08),transparent 65%);pointer-events:none}
+  .wthumb:not(.empty){cursor:pointer}
+  .media-btn{position:relative;z-index:2;pointer-events:none;width:54px;height:54px;border-radius:50%;background:var(--violet);display:grid;place-items:center;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
+  .wthumb:not(.empty):hover .media-btn{transform:scale(1.1);box-shadow:0 0 0 10px rgba(139,125,255,.12)}
+  .media-btn svg{width:20px;height:20px;fill:#0c0916}
+  .media-btn.play svg{margin-left:3px}
+  /* estado vacío */
+  .wthumb.empty .media-btn{background:transparent;border:1px dashed var(--line);cursor:default}
+  .wthumb.empty .media-btn:hover{transform:none;box-shadow:none}
+  .wthumb.empty .media-btn svg{fill:var(--text-mute)}
+  .chip{position:absolute;bottom:12px;left:14px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:rgba(12,13,26,.8);padding:4px 9px;border-radius:100px;border:1px solid var(--line-soft)}
+  .badge-live{position:absolute;top:12px;right:12px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--mint);color:#062018;padding:4px 10px;border-radius:100px;font-weight:700;display:flex;align-items:center;gap:6px}
+  .badge-live::before{content:"";width:5px;height:5px;border-radius:50%;background:#062018}
+  .wbody{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .wtag{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);margin-bottom:9px;display:block}
+  .wcard h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;margin-bottom:6px}
+  .wcard p{font-size:13.5px;color:var(--text-dim)}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:200;background:rgba(6,7,16,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:28px}
+  .modal.open{display:flex}
+  .modal-inner{width:100%;max-width:1000px;position:relative}
+  .modal video,.modal img{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:#000;max-height:82vh;object-fit:contain}
+  .modal-close{position:absolute;top:-46px;right:0;background:none;border:1px solid var(--line);border-radius:8px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;transition:border-color .2s}
+  .modal-close:hover{border-color:var(--violet)}
+  .modal-close svg{width:18px;height:18px;stroke:var(--text);stroke-width:2;fill:none}
+  .modal-title{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute);position:absolute;top:-42px;left:0;letter-spacing:.1em;text-transform:uppercase}
+
+  .smb{background:#0f1128;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .smb-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px;flex-wrap:wrap}
+  .smb-head .l{max-width:40em}
+  .smb-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.1;margin:10px 0 10px}
+  .smb-head p{color:var(--text-dim);font-size:15.5px}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prod{padding:22px;background:var(--surface);border:1px solid var(--line-soft);border-radius:13px;transition:border-color .25s,transform .25s}
+  .prod:hover{border-color:var(--violet-deep);transform:translateY(-3px)}
+  .prod .pname{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:18px;margin-bottom:5px}
+  .prod .pname em{color:var(--violet);font-style:normal}
+  .prod .pdesc{font-size:12.5px;color:var(--text-dim)}
+
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+  .contact-left h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,46px);line-height:1.04;letter-spacing:-.015em;margin-bottom:18px}
+  .contact-left p{color:var(--text-dim);font-size:16.5px;margin-bottom:26px;max-width:30em}
+  .cinfo{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line-soft)}
+  .cinfo:last-child{border-bottom:none}
+  .cinfo svg{width:20px;height:20px;stroke:var(--violet);fill:none;stroke-width:1.7;flex:none;margin-top:3px}
+  .cinfo .cl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:3px}
+  .cinfo .cv{font-size:15.5px;word-break:break-word}
+  .cinfo a.cv:hover{color:var(--violet)}
+  .form{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .form h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:21px;margin-bottom:6px}
+  .form .fsub{font-size:13.5px;color:var(--text-mute);margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);margin-bottom:7px}
+  .field input,.field textarea,.field select{width:100%;background:var(--base);border:1px solid var(--line);border-radius:9px;padding:12px 14px;color:var(--text);font-family:inherit;font-size:14.5px;transition:border-color .2s}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--violet)}
+  .field textarea{resize:vertical;min-height:88px}
+  .form .btn-p{width:100%;justify-content:center;margin-top:4px}
+
+  footer{border-top:1px solid var(--line-soft);background:#0f1128;padding:52px 0 34px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:34px;border-bottom:1px solid var(--line-soft)}
+  .foot-brand .brand{margin-bottom:14px}
+  .foot-brand p{font-size:14px;color:var(--text-dim);max-width:28em}
+  .foot-col h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14.5px;color:var(--text-dim);padding:5px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--violet)}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-mute)}
+  .foot-bot .fv{color:var(--violet)}
+
+  .fab{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:var(--violet);display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(139,125,255,.6);transition:transform .2s}
+  .fab:hover{transform:scale(1.08)}
+  .fab svg{width:29px;height:29px}
+
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:42px}.orq{max-width:480px}
+    .edge-grid{grid-template-columns:1fr;gap:34px}
+    .svcs{grid-template-columns:1fr}.msteps{grid-template-columns:1fr 1fr;gap:30px}
+    .work{grid-template-columns:1fr 1fr}.prod-grid{grid-template-columns:1fr 1fr}
+    .contact-grid{grid-template-columns:1fr;gap:36px}.foot-top{grid-template-columns:1fr;gap:30px}
+    .wg-head .sub{display:none}
+  }
+  @media(max-width:720px){
+    .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:rgba(12,13,26,.98);backdrop-filter:blur(14px);gap:0;padding:8px 0;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .3s;z-index:55}
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:14px 24px;width:100%;border-bottom:1px solid var(--line-soft)}
+    .nav-links a::after{display:none}
+    .menu-btn{display:block}.nav-cta .btn-ghost{display:none}
+    .msteps{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr}
+    .work{grid-template-columns:1fr}
+    .modal-close{top:auto;bottom:-46px;right:50%;transform:translateX(50%)}
+    .modal-title{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .eq .bar{animation:none;transform:scaleY(.7)}.orq-top .sync .dot,.hero-badge .live{animation:none}
+  }
+
+  .priv{max-width:820px;margin:0 auto;padding:110px 24px 80px}
+  .priv h1{font-family:"Space Grotesk",sans-serif;font-size:2.2rem;margin-bottom:6px}
+  .priv .upd{color:var(--text-mute);font-size:.9rem;margin-bottom:34px}
+  .priv h2{font-family:"Space Grotesk",sans-serif;font-size:1.2rem;margin:30px 0 10px;color:var(--violet)}
+  .priv p,.priv li{color:var(--text-dim);margin-bottom:10px}
+  .priv ul{padding-left:22px}
+  .priv a{color:var(--mint)}
+  .priv .back{display:inline-block;margin-bottom:28px;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<main class="priv">
+<a class="back" href="/">← Volver a Orchesta Labs</a>
+<h1>Aviso de privacidad integral</h1>
+<div class="upd">Última actualización: 14 de octubre de 2026</div>
+
+<h2>1. Identidad y domicilio del responsable</h2>
+<p>Juan José Pérez Miranda, persona física con actividad empresarial que opera bajo el nombre comercial <strong>Orchesta Labs</strong> (en adelante, "Orchesta Labs"), con domicilio en Calle Portal Toledo 249, Col. Portal del Valle, Apodaca, Nuevo León, C.P. 66643, México, es responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).</p>
+<p>Contacto: <a href="mailto:contacto@orchestalabs.com">contacto@orchestalabs.com</a> · WhatsApp 81 1596 7016.</p>
+
+<h2>2. Datos personales que recabamos</h2>
+<ul>
+<li><strong>Prospectos y clientes:</strong> nombre, empresa, teléfono, correo electrónico, datos fiscales para facturación y la información que nos comparte sobre su proyecto, ya sea por el formulario del sitio, WhatsApp, correo o en persona.</li>
+<li><strong>Usuarios finales de nuestros clientes</strong> (cuando operamos un asistente de WhatsApp, como Aura, en nombre de un cliente): número de teléfono, nombre de perfil de WhatsApp, contenido de los mensajes intercambiados y los datos de contacto o de interés comercial que la persona proporcione en la conversación.</li>
+</ul>
+<p>No solicitamos datos personales sensibles. Le pedimos no compartirlos por estos medios.</p>
+
+<h2>3. Finalidades del tratamiento</h2>
+<p><strong>Finalidades primarias</strong> (necesarias para el servicio):</p>
+<ul>
+<li>Atender y dar seguimiento a solicitudes de información, cotizaciones y diagnósticos.</li>
+<li>Prestar los servicios contratados de consultoría, automatización y desarrollo de software.</li>
+<li>Operar asistentes de WhatsApp y sistemas de atención en nombre de nuestros clientes: responder mensajes, registrar prospectos y entregar esa información al cliente correspondiente.</li>
+<li>Facturación, cobranza y cumplimiento de obligaciones fiscales y legales.</li>
+<li>Soporte técnico y mejora del funcionamiento de los servicios.</li>
+</ul>
+<p><strong>Finalidad secundaria:</strong> enviarle información sobre nuevos servicios de Orchesta Labs. Si no desea que sus datos se usen para esta finalidad, escríbanos a <a href="mailto:contacto@orchestalabs.com">contacto@orchestalabs.com</a>; esto no afectará los servicios que solicite.</p>
+
+<h2>4. Datos tratados por cuenta de nuestros clientes</h2>
+<p>Cuando Orchesta Labs opera un asistente de WhatsApp para un negocio cliente, ese negocio es el responsable de los datos de sus propios contactos y Orchesta Labs actúa como encargado: trata la información únicamente para prestar el servicio, conforme a las instrucciones del cliente, y no la usa para fines propios ni la vende.</p>
+
+<h2>5. Transferencias y proveedores</h2>
+<p>Para operar los servicios utilizamos proveedores que tratan datos como encargados, entre ellos:</p>
+<ul>
+<li>Meta Platforms (WhatsApp Business Platform), para el envío y la recepción de mensajes.</li>
+<li>Proveedores de hospedaje, bases de datos e infraestructura en la nube.</li>
+<li>Proveedores de modelos de inteligencia artificial, para generar respuestas automáticas.</li>
+</ul>
+<p>Algunos de estos proveedores pueden estar ubicados fuera de México. No vendemos ni transferimos sus datos a terceros para fines distintos a los descritos, salvo requerimiento de autoridad competente.</p>
+
+<h2>6. Derechos ARCO y revocación del consentimiento</h2>
+<p>Usted puede Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos (derechos ARCO), así como revocar su consentimiento, enviando una solicitud a <a href="mailto:contacto@orchestalabs.com">contacto@orchestalabs.com</a> con: su nombre, un medio para responderle, una copia de su identificación y la descripción clara de lo que solicita. Le responderemos en un plazo máximo de 20 días hábiles.</p>
+<p>Si usted es contacto de alguno de nuestros clientes, también puede dirigir su solicitud directamente a ese negocio.</p>
+
+<h2>7. Conservación y seguridad</h2>
+<p>Conservamos los datos solo durante el tiempo necesario para las finalidades descritas y para cumplir obligaciones legales. Aplicamos medidas de seguridad administrativas, técnicas y físicas para protegerlos contra daño, pérdida, alteración o acceso no autorizado.</p>
+
+<h2>8. Uso de cookies</h2>
+<p>Este sitio no utiliza cookies de seguimiento ni de publicidad. Pueden emplearse cookies técnicas estrictamente necesarias para su funcionamiento.</p>
+
+<h2>9. Cambios a este aviso</h2>
+<p>Cualquier cambio a este aviso de privacidad se publicará en esta misma página: <a href="https://orchestalabs.com/privacidad.html">orchestalabs.com/privacidad.html</a>.</p>
+</main>
+</body>
+</html>
