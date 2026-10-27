@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Dictamen de Crédito</title>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: formulario de solicitud a la izquierda, dictamen fijo a la derecha; una columna en teléfono */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#15212b; --muted:#5b6b78; --line:#d8dfe5;
+  --accent:#1d5f7a; --accent-soft:#e3eef3;
+  --ok:#1f7a4a; --ok-soft:#e2f2e9; --warn:#a86a00; --warn-soft:#fbefd6; --bad:#b3261e; --bad-soft:#fbe3e1;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f161c; --surface:#17212a; --ink:#e4ebf0; --muted:#93a3b0; --line:#2a3743;
+  --accent:#6fb6d3; --accent-soft:#1b3340;
+  --ok:#5cc58d; --ok-soft:#163327; --warn:#e3a840; --warn-soft:#3a2c12; --bad:#f07a70; --bad-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#17212a; --ink:#e4ebf0; --muted:#93a3b0; --line:#2a3743;
+  --accent:#6fb6d3; --accent-soft:#1b3340;
+  --ok:#5cc58d; --ok-soft:#163327; --warn:#e3a840; --warn-soft:#3a2c12; --bad:#f07a70; --bad-soft:#3d1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:20px}
+h1{font-size:1.6rem;margin:0;letter-spacing:-.01em;text-wrap:balance}
+header p{margin:2px 0 0;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:.9rem;font-weight:600;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+section.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 14px;font-weight:700}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px 14px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;font-weight:600;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input,select{font:inherit;font-family:var(--f-num);font-size:.9rem;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+select{font-family:var(--f-body)}
+.check{flex-direction:row;align-items:center;gap:8px;font-weight:500}
+.check input{width:auto}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;width:fit-content;max-width:100%;margin-bottom:14px}
+.seg button{border:0;border-radius:0;background:transparent;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.tablewrap{overflow-x:auto;margin:0 -4px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.85rem}
+th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 4px;font-weight:700}
+td{padding:4px}
+td input,td select{padding:6px 8px;font-size:.85rem}
+td.x button{padding:6px 10px;color:var(--muted)}
+.add{margin-top:10px}
+details summary{cursor:pointer;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+details[open] summary{margin-bottom:14px}
+.result{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:900px){.result{position:static}}
+.verdict{border-radius:10px;padding:18px;display:flex;gap:14px;align-items:center;border:1px solid var(--line)}
+.light{width:44px;height:44px;border-radius:50%;flex:none;background:var(--muted)}
+.verdict.verde{background:var(--ok-soft)} .verdict.verde .light{background:var(--ok)}
+.verdict.ambar{background:var(--warn-soft)} .verdict.ambar .light{background:var(--warn)}
+.verdict.rojo{background:var(--bad-soft)} .verdict.rojo .light{background:var(--bad)}
+.verdict b{display:block;font-size:1.25rem;line-height:1.2}
+.verdict span{color:var(--muted);font-size:.85rem}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px}
+.metric{background:var(--surface);padding:12px}
+.metric small{display:block;color:var(--muted);font-size:.75rem}
+.metric strong{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:1.05rem;font-weight:600}
+.meter{margin-top:14px}
+.meter .bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.meter .fill{height:100%;background:var(--ok);width:0;transition:width .3s}
+.meter .fill.ambar{background:var(--warn)} .meter .fill.rojo{background:var(--bad)}
+.meter small{display:flex;justify-content:space-between;color:var(--muted);font-size:.75rem;margin-top:4px;font-variant-numeric:tabular-nums}
+ul.reasons{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:6px}
+ul.reasons li{display:flex;gap:8px;font-size:.88rem;padding:8px 10px;border-radius:7px;background:var(--bg)}
+ul.reasons li i{flex:none;width:8px;height:8px;border-radius:50%;margin-top:7px;font-style:normal}
+li.verde i{background:var(--ok)} li.ambar i{background:var(--warn)} li.rojo i{background:var(--bad)}
+.copyrow{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.toast{font-size:.85rem;color:var(--ok);align-self:center}
+.note{font-size:.8rem;color:var(--muted);margin-top:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Dictamen de crédito</h1>
+      <p>Captura la solicitud y el reporte de Círculo de Crédito. El dictamen se calcula al momento.</p>
+    </div>
+    <div class="actions">
+      <button id="btnEjemplo" type="button">Cargar ejemplo</button>
+      <button id="btnNueva" type="button">Nueva solicitud</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="col">
+      <section class="box">
+        <h2>Solicitud</h2>
+        <div class="seg" role="group" aria-label="Tipo de crédito">
+          <button type="button" data-tipo="dxn" aria-pressed="true">Descuento vía nómina (DXN)</button>
+          <button type="button" data-tipo="dom" aria-pressed="false">Domiciliado</button>
+        </div>
+        <div class="fields">
+          <label>Nombre del solicitante<input id="nombre" type="text" style="font-family:var(--f-body)"></label>
+          <label>Edad<input id="edad" type="number" min="0" inputmode="numeric"></label>
+          <label>Antigüedad laboral <small>meses</small><input id="antig" type="number" min="0" inputmode="numeric"></label>
+          <label>Monto solicitado<input id="monto" type="number" min="0" step="500" inputmode="decimal"></label>
+          <label>Plazo <small>meses</small><input id="plazo" type="number" min="1" inputmode="numeric"></label>
+          <label>Tasa anual <small>%</small><input id="tasa" type="number" min="0" step="0.1" inputmode="decimal"></label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>Ingreso (recibo de nómina)</h2>
+        <div class="fields">
+          <label>Periodicidad
+            <select id="periodo">
+              <option value="semanal">Semanal</option>
+              <option value="catorcenal">Catorcenal</option>
+              <option value="quincenal" selected>Quincenal</option>
+              <option value="mensual">Mensual</option>
+            </select>
+          </label>
+          <label>Percepción neta por periodo <small>lo que deposita</small><input id="neto" type="number" min="0" inputmode="decimal"></label>
+          <label>Descuentos de crédito en nómina <small>por periodo, ya existentes</small><input id="descNomina" type="number" min="0" inputmode="decimal"></label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>Reporte de Círculo de Crédito</h2>
+        <div class="fields" style="margin-bottom:14px">
+          <label>Consultas últimos 6 meses<input id="consultas" type="number" min="0" inputmode="numeric"></label>
+          <label class="check"><input id="prevencion" type="checkbox"> Tiene clave de prevención</label>
+          <label class="check"><input id="sinHist" type="checkbox"> Sin historial (UC)</label>
+        </div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Otorgante</th><th>Saldo actual</th><th>Pago mensual</th><th>MOP actual</th><th>Peor MOP 12 m</th><th>Se liquida</th><th></th></tr></thead>
+            <tbody id="cuentas"></tbody>
+          </table>
+        </div>
+        <button type="button" class="add" id="btnAdd">+ Agregar cuenta</button>
+        <p class="note">Marca "Se liquida" si la cuenta se paga con este crédito (compra de deuda); su pago ya no cuenta contra la capacidad.</p>
+      </section>
+
+      <section class="box">
+        <details id="politicas">
+          <summary>Políticas de la financiera</summary>
+          <div class="fields">
+            <label>Endeudamiento máximo <small>% del ingreso neto</small><input id="pDti" type="number" min="0" max="100"></label>
+            <label>Tope de descuento DXN <small>% del neto</small><input id="pTope" type="number" min="0" max="100"></label>
+            <label>Antigüedad mínima <small>meses</small><input id="pAntig" type="number" min="0"></label>
+            <label>Edad máxima al terminar<input id="pEdad" type="number" min="18"></label>
+            <label>Consultas máximas 6 m<input id="pCons" type="number" min="0"></label>
+            <label>Revisar si el pago usa más de <small>% de la capacidad</small><input id="pMargen" type="number" min="0" max="100"></label>
+            <label class="check"><input id="pIva" type="checkbox"> Sumar IVA (16%) a los intereses</label>
+          </div>
+          <p class="note">Estas reglas se guardan en este navegador.</p>
+        </details>
+      </section>
+    </div>
+
+    <aside class="col result" aria-live="polite">
+      <div class="verdict" id="verdict"><div class="light"></div><div><b id="vTitulo">—</b><span id="vSub"></span></div></div>
+      <div class="metrics">
+        <div class="metric"><small>Ingreso neto mensual</small><strong id="mIngreso">—</strong></div>
+        <div class="metric"><small>Pagos en buró</small><strong id="mBuro">—</strong></div>
+        <div class="metric"><small>Capacidad de pago</small><strong id="mCap">—</strong></div>
+        <div class="metric"><small>Pago solicitado</small><strong id="mPago">—</strong></div>
+        <div class="metric"><small>Monto máximo</small><strong id="mMax">—</strong></div>
+        <div class="metric"><small>Pago por periodo</small><strong id="mPer">—</strong></div>
+      </div>
+      <div class="meter">
+        <div class="bar"><div class="fill" id="fill"></div></div>
+        <small><span>Uso de la capacidad</span><span id="mUso">—</span></small>
+      </div>
+      <ul class="reasons" id="motivos"></ul>
+      <div class="copyrow">
+        <button type="button" class="primary" id="btnCopy">Copiar dictamen</button>
+        <span class="toast" id="toast" hidden>Copiado</span>
+      </div>
+      <p class="note">La capacidad es el menor entre el endeudamiento máximo y, en DXN, el tope de descuento en nómina.</p>
+    </aside>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const FACTOR = {semanal:52/12, catorcenal:26/12, quincenal:2, mensual:1};
+const MOPS = [["01","01 Al corriente"],["02","02 1-29 días"],["03","03 30-59 días"],["04","04 60-89 días"],["05","05 90-119 días"],["06","06 120-149 días"],["07","07 150+ días"],["96","96 Atraso 12+ meses"],["97","97 Deuda sin recuperar"],["99","99 Fraude"]];
+const DEF_POL = {pDti:40, pTope:30, pAntig:6, pEdad:70, pCons:4, pMargen:90, pIva:true};
+let tipo = "dxn";
+
+const money = n => isFinite(n) ? n.toLocaleString("es-MX",{style:"currency",currency:"MXN",maximumFractionDigits:0}) : "—";
+const num = id => parseFloat($(id).value) || 0;
+
+function addRow(d = {}){
+  const tr = document.createElement("tr");
+  const opts = sel => MOPS.map(([v,t]) => `<option value="${v}"${v===sel?" selected":""}>${t}</option>`).join("");
+  tr.innerHTML = `<td><input type="text" style="font-family:var(--f-body)" value="${d.o||""}" aria-label="Otorgante"></td>
+    <td><input type="number" min="0" value="${d.s??""}" aria-label="Saldo"></td>
+    <td><input type="number" min="0" value="${d.p??""}" aria-label="Pago mensual"></td>
+    <td><select aria-label="MOP actual">${opts(d.a||"01")}</select></td>
+    <td><select aria-label="Peor MOP">${opts(d.w||"01")}</select></td>
+    <td style="text-align:center"><input type="checkbox" ${d.l?"checked":""} aria-label="Se liquida" style="width:auto"></td>
+    <td class="x"><button type="button" aria-label="Quitar cuenta">✕</button></td>`;
+  tr.querySelector(".x button").onclick = () => { tr.remove(); calc(); };
+  $("cuentas").appendChild(tr);
+}
+
+function cuentas(){
+  return [...$("cuentas").rows].map(r => {
+    const i = r.querySelectorAll("input,select");
+    return {o:i[0].value||"Cuenta", s:+i[1].value||0, p:+i[2].value||0, a:i[3].value, w:i[4].value, l:i[5].checked};
+  });
+}
+
+function pol(){
+  const p = {}; for (const k in DEF_POL) p[k] = k==="pIva" ? $(k).checked : num(k); return p;
+}
+function savePol(){ try{ localStorage.setItem("politicas", JSON.stringify(pol())); }catch(e){} }
+function loadPol(){
+  let p = DEF_POL;
+  try{ const s = JSON.parse(localStorage.getItem("politicas")); if (s) p = {...DEF_POL, ...s}; }catch(e){}
+  for (const k in p) k==="pIva" ? ($(k).checked = p[k]) : ($(k).value = p[k]);
+}
+
+function pmt(monto, r, n){ return r ? monto*r/(1-Math.pow(1+r,-n)) : monto/n; }
+function pv(pago, r, n){ return r ? pago*(1-Math.pow(1+r,-n))/r : pago*n; }
+
+let last = null;
+function calc(){
+  const P = pol();
+  const f = FACTOR[$("periodo").value];
+  const ingreso = num("neto")*f;
+  const descNom = num("descNomina")*f;
+  const cs = cuentas();
+  const pagosBuro = cs.filter(c=>!c.l).reduce((a,c)=>a+c.p,0);
+  const n = Math.max(1, Math.round(num("plazo")) || 1);
+  const r = num("tasa")/100/12 * (P.pIva ? 1.16 : 1);
+  const capDti = ingreso*P.pDti/100 - pagosBuro;
+  const capDxn = ingreso*P.pTope/100 - descNom;
+  const cap = Math.max(0, tipo==="dxn" ? Math.min(capDti, capDxn) : capDti);
+  const montoMax = pv(cap, r, n);
+  const monto = num("monto");
+  const pago = monto>0 ? pmt(monto, r, n) : 0;
+  const uso = cap>0 ? pago/cap : (pago>0 ? Infinity : 0);
+  const edad = num("edad"), antig = num("antig"), cons = num("consultas");
+
+  const m = [];
+  const add = (nivel, texto) => m.push({nivel, texto});
+  const completo = ingreso>0 && monto>0 && num("plazo")>0 && edad>0;
+
+  if (!completo) add("ambar","Faltan datos: ingreso, monto, plazo o edad.");
+  if ($("prevencion").checked) add("rojo","El reporte tiene clave de prevención.");
+  const graves = cs.filter(c => ["05","06","07","96","97","99"].includes(c.w));
+  graves.forEach(c => add("rojo",`${c.o}: peor MOP ${c.w} en los últimos 12 meses.`));
+  cs.filter(c => !graves.includes(c) && ["03","04"].includes(c.w)).forEach(c => add("ambar",`${c.o}: atraso histórico MOP ${c.w}.`));
+  cs.filter(c => c.a!=="01").forEach(c => add(+c.a>=4 ? "rojo":"ambar", `${c.o}: atraso vigente MOP ${c.a}.`));
+  if ($("sinHist").checked) add("ambar","Sin historial crediticio: validar referencias.");
+  else if (!cs.length) add("ambar","No hay cuentas capturadas del reporte.");
+  if (cons > P.pCons) add("ambar",`${cons} consultas en 6 meses (máximo ${P.pCons}).`);
+  if (antig < P.pAntig) add(tipo==="dxn"?"rojo":"ambar",`Antigüedad de ${antig} meses (mínimo ${P.pAntig}).`);
+  if (edad>0 && edad < 18) add("rojo","Menor de edad.");
+  if (edad>0 && edad + n/12 > P.pEdad) add("rojo",`Terminaría de pagar a los ${Math.ceil(edad+n/12)} años (máximo ${P.pEdad}).`);
+  if (completo){
+    if (cap <= 0) add("rojo","Sin capacidad de pago: sus pagos actuales ya llenan el tope.");
+    else if (pago > cap) add("ambar",`El pago excede la capacidad. Contraoferta: hasta ${money(Math.floor(montoMax/500)*500)} a ${n} meses.`);
+    else if (uso*100 > P.pMargen) add("ambar",`El pago usa ${Math.round(uso*100)}% de la capacidad.`);
+    else add("verde",`El pago usa ${Math.round(uso*100)}% de la capacidad.`);
+    if (tipo==="dxn" && capDxn < capDti) add("verde","Limita el tope de descuento en nómina.");
+  }
+
+  const rank = {verde:0, ambar:1, rojo:2};
+  const nivel = m.reduce((a,x)=> rank[x.nivel]>rank[a] ? x.nivel : a, "verde");
+  const contra = m.some(x=>x.texto.startsWith("El pago excede")) && nivel==="ambar" && !m.some(x=>x.nivel==="ambar" && !x.texto.startsWith("El pago excede"));
+  const titulo = !completo ? "Incompleto" : nivel==="verde" ? "Aprobar" : nivel==="rojo" ? "Rechazar" : contra ? "Contraofertar" : "Revisar";
+  const sub = !completo ? "Captura los datos mínimos" : nivel==="verde" ? "Cumple todas las políticas" : nivel==="rojo" ? "Incumple una política dura" : contra ? "Aprobable con monto menor" : "Requiere criterio del analista";
+
+  const v = $("verdict"); v.className = "verdict " + (completo ? nivel : "");
+  $("vTitulo").textContent = titulo; $("vSub").textContent = sub;
+  $("mIngreso").textContent = money(ingreso);
+  $("mBuro").textContent = money(pagosBuro);
+  $("mCap").textContent = money(cap);
+  $("mPago").textContent = money(pago);
+  $("mMax").textContent = money(montoMax);
+  $("mPer").textContent = money(pago/f);
+  const pct = isFinite(uso) ? uso*100 : 100;
+  $("mUso").textContent = isFinite(uso) ? Math.round(pct)+"%" : "—";
+  const fill = $("fill"); fill.style.width = Math.min(100,pct)+"%";
+  fill.className = "fill " + (pct>100 ? "rojo" : pct>P.pMargen ? "ambar" : "");
+  $("motivos").innerHTML = m.map(x=>`<li class="${x.nivel}"><i></i><span>${x.texto}</span></li>`).join("");
+
+  last = {titulo, sub, ingreso, pagosBuro, cap, pago, montoMax, uso, n, monto, m};
+}
+
+function textoDictamen(){
+  const d = last; if (!d) return "";
+  const nombre = $("nombre").value || "Solicitante";
+  return [
+    `DICTAMEN DE CRÉDITO — ${nombre}`,
+    `Tipo: ${tipo==="dxn"?"Descuento vía nómina":"Domiciliado"} | Monto: ${money(d.monto)} a ${d.n} meses`,
+    `Resultado: ${d.titulo.toUpperCase()} (${d.sub})`,
+    ``,
+    `Ingreso neto mensual: ${money(d.ingreso)}`,
+    `Pagos en buró: ${money(d.pagosBuro)}`,
+    `Capacidad de pago: ${money(d.cap)}`,
+    `Pago solicitado: ${money(d.pago)} (${isFinite(d.uso)?Math.round(d.uso*100)+"%":"—"} de la capacidad)`,
+    `Monto máximo: ${money(d.montoMax)}`,
+    ``,
+    `Motivos:`,
+    ...d.m.map(x=>`- [${x.nivel}] ${x.texto}`)
+  ].join("\n");
+}
+
+function setTipo(t){
+  tipo = t;
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.tipo===t));
+  calc();
+}
+
+function ejemplo(){
+  $("nombre").value = "Ejemplo: María López";
+  $("edad").value = 34; $("antig").value = 28; $("monto").value = 40000; $("plazo").value = 24; $("tasa").value = 45;
+  $("periodo").value = "quincenal"; $("neto").value = 9800; $("descNomina").value = 600;
+  $("consultas").value = 2; $("prevencion").checked = false; $("sinHist").checked = false;
+  $("cuentas").innerHTML = "";
+  addRow({o:"Tarjeta Banco A", s:12500, p:1100, a:"01", w:"02"});
+  addRow({o:"Crédito tienda", s:4800, p:650, a:"01", w:"01"});
+  addRow({o:"Préstamo personal", s:8200, p:1450, a:"01", w:"03", l:true});
+  setTipo("dxn");
+}
+
+function nueva(){
+  ["nombre","edad","antig","monto","plazo","tasa","neto","descNomina","consultas"].forEach(id => $(id).value = "");
+  $("prevencion").checked = false; $("sinHist").checked = false;
+  $("cuentas").innerHTML = ""; addRow();
+  calc();
+}
+
+document.querySelectorAll(".seg button").forEach(b => b.onclick = () => setTipo(b.dataset.tipo));
+$("btnAdd").onclick = () => { addRow(); calc(); };
+$("btnEjemplo").onclick = ejemplo;
+$("btnNueva").onclick = nueva;
+document.addEventListener("input", e => { if (e.target.closest("#politicas")) savePol(); calc(); });
+document.addEventListener("change", e => { if (e.target.closest("#politicas")) savePol(); calc(); });
+$("btnCopy").onclick = () => {
+  const t = textoDictamen(), toast = $("toast");
+  const ok = () => { toast.textContent = "Copiado"; toast.hidden = false; setTimeout(()=>toast.hidden=true, 1800); };
+  try{
+    navigator.clipboard.writeText(t).then(ok).catch(() => fallback(t, ok));
+  }catch(e){ fallback(t, ok); }
+};
+function fallback(t, ok){
+  const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); ok(); }catch(e){}
+  ta.remove();
+}
+
+loadPol();
+ejemplo();
+</script>
+</body>
+</html>
